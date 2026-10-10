@@ -11,6 +11,11 @@ class Review extends Model
     /** @use HasFactory<ReviewFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'review',
+        'rating',
+    ];
+
     /**
      * Define Movie-Review relationship.
      */
