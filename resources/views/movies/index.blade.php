@@ -3,7 +3,15 @@
 @section('content')
     <h1 class="mb-10 text-2x1">Movies</h1>
 
-    <form></form>
+    <form method="GET" action="{{ route('movies.index') }}"
+        class="mb-4 flex items-center space-x-2"
+    >
+        <input class="input h-10" type="text" name="title" id="title" placeholder="Search by title"
+            value="{{ request('title') }}"
+        />
+        <button class="btn h-10" type="submit">Search</button>
+        <a href="{{ route('movies.index') }}" class="btn h-10">Clear</a>
+    </form>
 
     <ul>
         @forelse($movies as $movie)
@@ -29,7 +37,7 @@
             <li class="mb-4">
                 <div class="empty-movie-item">
                     <p class="empty-text">No movies found</p>
-                    <a href="{{ route('movies.index') }}" class="reset-link">Reset criteria</a>
+                    <a href="{{ route('movies.index') }}" class="reset-link">Clear search</a>
                 </div>
             </li>
         @endforelse
