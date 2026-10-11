@@ -36,8 +36,8 @@ class Movie extends Model
     {
         return $query
             ->withCount([
-                'reviews' => fn (Builder $query) =>
-                    $this->dateRangeFilter($query, $from, $to),
+                'reviews' => fn (Builder $q) =>
+                    $this->dateRangeFilter($q, $from, $to),
             ])
             ->orderBy('reviews_count', 'desc');
     }
@@ -49,8 +49,8 @@ class Movie extends Model
     {
         return $query
             ->withAvg([
-                'reviews' => fn (Builder $query) =>
-                    $this->dateRangeFilter($query, $from, $to),
+                'reviews' => fn (Builder $q) =>
+                    $this->dateRangeFilter($q, $from, $to),
             ], 'rating')
             ->orderBy('reviews_avg_rating', 'desc');
     }
