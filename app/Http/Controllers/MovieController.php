@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -9,9 +11,16 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $title = $request->input('title');
+
+        $movies = Movie::when($title, fn (Builder $query) =>
+            $query->title($title)
+        )
+            ->get();
+
+        return view('movies.index', ['movies' => $movies]);
     }
 
     /**
