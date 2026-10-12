@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -52,9 +53,17 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Movie $movie)
     {
-        //
+        return view(
+            'movies.show',
+            [
+                'movie' => $movie->load([
+                    'reviews' => fn (HasMany $query) =>
+                        $query->latest(),
+                ])
+            ]
+        );
     }
 
     /**
