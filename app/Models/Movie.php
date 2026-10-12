@@ -30,9 +30,9 @@ class Movie extends Model
     }
 
     /**
-     * Order movies by review count.
+     * Order movies by review count within a given date range.
      */
-    public function scopePopular(Builder $query, ?string $from = null, ?string $to = null): Builder
+    public function scopeMostPopular(Builder $query, ?string $from = null, ?string $to = null): Builder
     {
         return $query
             ->withCount([
@@ -43,7 +43,7 @@ class Movie extends Model
     }
 
     /**
-     * Order movies by review average rating.
+     * Order movies by review average rating within a given date range.
      */
     public function scopeHighestRated(Builder $query, ?string $from = null, ?string $to = null): Builder
     {
@@ -76,5 +76,49 @@ class Movie extends Model
         } else {
             $query->whereBetween('created_at', [$from, $to]);
         }
+    }
+
+    /**
+     * Return the most popular movies based on review count and average rating from the last month.
+     */
+    public function scopePopularLastMonth(Builder $query): Builder
+    {
+        return $query
+            ->mostPopular(now()->subMonth(), now())
+            ->highestRated(now()->subMonth(), now())
+            ->minimumReviews(2);
+    }
+
+    /**
+     * Return the most popular movies based on review count and average rating from the last 6 months.
+     */
+    public function scopePopularLast6Months(Builder $query): Builder
+    {
+        return $query
+            ->mostPopular(now()->subMonth(6), now())
+            ->highestRated(now()->subMonth(6), now())
+            ->minimumReviews(5);
+    }
+
+    /**
+     * Return the most popular movies based on review average rating and count from the last month.
+     */
+    public function scopeHighestRatedLastMonth(Builder $query): Builder
+    {
+        return $query
+            ->highestRated(now()->subMonth(), now())
+            ->mostPopular(now()->subMonth(), now())
+            ->minimumReviews(2);
+    }
+
+    /**
+     * Return the most popular movies based on review average rating and count from the last 6 months.
+     */
+    public function scopeHighestRatedLast6Months(Builder $query): Builder
+    {
+        return $query
+            ->highestRated(now()->subMonth(6), now())
+            ->mostPopular(now()->subMonth(6), now())
+            ->minimumReviews(5);
     }
 }
