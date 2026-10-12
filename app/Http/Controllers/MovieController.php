@@ -14,11 +14,21 @@ class MovieController extends Controller
     public function index(Request $request)
     {
         $title = $request->input('title');
+        $filter = $request->input('filter', '');
 
         $movies = Movie::when($title, fn (Builder $query) =>
             $query->title($title)
-        )
-            ->get();
+        );
+
+        $movies = match($filter) {
+                'popular_last_month' => $movies->popularLastMonth(),
+                'popular_last_6months' => $movies->popularLast6Months(),
+                'highest_rated_last_month' => $movies->highestRatedLastMonth(),
+                'highest_rated_last_6months' => $movies->highestRatedLast6Months(),
+                default => $movies->latest(),
+        };
+
+        $movies = $movies->get();
 
         return view('movies.index', ['movies' => $movies]);
     }
