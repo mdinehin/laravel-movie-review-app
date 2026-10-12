@@ -29,7 +29,11 @@ class MovieController extends Controller
                 default => $movies->latest(),
         };
 
-        $movies = $movies->get();
+        $cacheKey = 'movies:' . $filter . ':' . $title;
+
+        $movies = cache()->remember($cacheKey, 3600, fn() =>
+            $movies->get()
+        );
 
         return view('movies.index', ['movies' => $movies]);
     }
