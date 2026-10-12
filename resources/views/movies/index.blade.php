@@ -9,9 +9,52 @@
         <input class="input h-10" type="text" name="title" id="title" placeholder="Search by title"
             value="{{ request('title') }}"
         />
+        @if(request('filter'))
+            <input type="hidden" name="filter" value="{{ request('filter') }}" />
+        @endif
         <button class="btn h-10" type="submit">Search</button>
         <a href="{{ route('movies.index') }}" class="btn h-10">Clear</a>
     </form>
+
+    <div class="filter-container mb-4 flex">
+        @php
+            $filters = [
+                '' => 'Latest',
+                'popular_last_month' => 'Popular latest month',
+                'popular_last_6months' => 'Popular latest 6 months',
+                'highest_rated_last_month' => 'Highest rated latest month',
+                'highest_rated_last_6months' => 'Highest rated latest 6 months',
+            ];
+        @endphp
+
+        @foreach($filters as $key => $label)
+            <a
+                @if($key === '')
+                    href="{{ route('movies.index', [
+                        ...request()->except('filter'),
+                    ]) }}"
+                @else
+                    href="{{ route('movies.index', [
+                        ...request()->query(),
+                        'filter' => $key,
+                    ]) }}"
+                @endif
+                class="{{
+                    (
+                        request('filter') === $key
+                        || (
+                            request('filter') === null
+                            && $key === ''
+                        )
+                    )
+                        ? 'filter-item-active'
+                        : 'filter-item'
+                }}"
+            >
+                <span>{{ $label }}</span>
+            </a>
+        @endforeach
+    </div>
 
     <ul>
         @forelse($movies as $movie)
