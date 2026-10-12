@@ -59,15 +59,15 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return view(
-            'movies.show',
-            [
-                'movie' => $movie->load([
-                    'reviews' => fn (HasMany $query) =>
-                        $query->latest(),
-                ])
-            ]
+        $cacheKey = 'movie:' . $movie->id;
+
+        $movie = cache()->remember($cacheKey, 3600, fn() =>
+            $movie->load(['reviews' => fn (HasMany $query) =>
+                $query->latest(),
+            ])
         );
+
+        return view('movies.show', ['movie' => $movie]);
     }
 
     /**

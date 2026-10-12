@@ -134,6 +134,7 @@ return [
     'serializable_classes' => [
         Illuminate\Database\Eloquent\Collection::class,
         App\Models\Movie::class,
+        App\Models\Review::class,
     ],
 
 ];
