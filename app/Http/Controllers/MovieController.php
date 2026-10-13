@@ -22,11 +22,11 @@ class MovieController extends Controller
         );
 
         $movies = match($filter) {
-                'popular_last_month' => $movies->popularLastMonth(),
-                'popular_last_6months' => $movies->popularLast6Months(),
-                'highest_rated_last_month' => $movies->highestRatedLastMonth(),
-                'highest_rated_last_6months' => $movies->highestRatedLast6Months(),
-                default => $movies->latest(),
+            'popular_last_month' => $movies->popularLastMonth(),
+            'popular_last_6months' => $movies->popularLast6Months(),
+            'highest_rated_last_month' => $movies->highestRatedLastMonth(),
+            'highest_rated_last_6months' => $movies->highestRatedLast6Months(),
+            default => $movies->latest()->withAvgRating()->withReviewsCount(),
         };
 
         $cacheKey = 'movies:' . $filter . ':' . $title;
