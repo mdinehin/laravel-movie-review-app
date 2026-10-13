@@ -57,14 +57,14 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Movie $movie)
+    public function show(int $id)
     {
-        $cacheKey = 'movie:' . $movie->id;
+        $cacheKey = 'movie:' . $id;
 
         $movie = cache()->remember($cacheKey, 3600, fn() =>
-            $movie->load(['reviews' => fn (HasMany $query) =>
+            Movie::with(['reviews' => fn (HasMany $query) =>
                 $query->latest(),
-            ])
+            ])->withAvgRating()->withReviewsCount()->findOrFail($id)
         );
 
         return view('movies.show', ['movie' => $movie]);
