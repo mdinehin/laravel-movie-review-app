@@ -30,15 +30,36 @@ class Movie extends Model
     }
 
     /**
-     * Order movies by review count within a given date range.
+     * Return movies with a "reviews_count" column within a given date range.
      */
-    public function scopeMostPopular(Builder $query, ?string $from = null, ?string $to = null): Builder
+    public function scopeWithReviewsCount(Builder $query, ?string $from = null, ?string $to = null): Builder
     {
         return $query
             ->withCount([
                 'reviews' => fn (Builder $q) =>
                     $this->dateRangeFilter($q, $from, $to),
-            ])
+            ]);
+    }
+
+    /**
+     * Return movies with a "reviews_avg_rating" column within a given date range.
+     */
+    public function scopeWithAvgRating(Builder $query, ?string $from = null, ?string $to = null): Builder
+    {
+        return $query
+            ->withAvg([
+                'reviews' => fn (Builder $q) =>
+                    $this->dateRangeFilter($q, $from, $to),
+            ], 'rating');
+    }
+
+    /**
+     * Order movies by review count within a given date range.
+     */
+    public function scopeMostPopular(Builder $query, ?string $from = null, ?string $to = null): Builder
+    {
+        return $query
+            ->withReviewsCount($from, $to)
             ->orderBy('reviews_count', 'desc');
     }
 
@@ -48,10 +69,7 @@ class Movie extends Model
     public function scopeHighestRated(Builder $query, ?string $from = null, ?string $to = null): Builder
     {
         return $query
-            ->withAvg([
-                'reviews' => fn (Builder $q) =>
-                    $this->dateRangeFilter($q, $from, $to),
-            ], 'rating')
+            ->withAvgRating($from, $to)
             ->orderBy('reviews_avg_rating', 'desc');
     }
 
@@ -70,10 +88,10 @@ class Movie extends Model
     private function dateRangeFilter(Builder $query, ?string $from = null, ?string $to = null): void
     {
         if ($from && ! $to) {
-            $query->where('created_at','>=', $from);
+            $query->where('created_at', '>=', $from);
         } else if (! $from && $to) {
-            $query->where('created_at','<=', $to);
-        } else {
+            $query->where('created_at', '<=', $to);
+        } else if ($from && $to) {
             $query->whereBetween('created_at', [$from, $to]);
         }
     }
@@ -101,7 +119,7 @@ class Movie extends Model
     }
 
     /**
-     * Return the most popular movies based on review average rating and count from the last month.
+     * Return the most popular movies based on average rating and review count from the last month.
      */
     public function scopeHighestRatedLastMonth(Builder $query): Builder
     {
@@ -112,7 +130,7 @@ class Movie extends Model
     }
 
     /**
-     * Return the most popular movies based on review average rating and count from the last 6 months.
+     * Return the most popular movies based on average rating and review count from the last 6 months.
      */
     public function scopeHighestRatedLast6Months(Builder $query): Builder
     {
