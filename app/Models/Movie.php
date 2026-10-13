@@ -139,4 +139,18 @@ class Movie extends Model
             ->mostPopular(now()->subMonth(6), now())
             ->minimumReviews(5);
     }
+
+    /**
+     * Flush movie query caches when a movie is updated or deleted.
+     */
+    protected static function booted(): void
+    {
+        static::updated(fn (Movie $movie) =>
+            cache()->forget('movie:' . $movie->id)
+        );
+
+        static::deleted(fn (Movie $movie) =>
+            cache()->forget('movie:' . $movie->id)
+        );
+    }
 }
