@@ -24,6 +24,12 @@
         </div>
     </div>
 
+    <div class="mb-4">
+        <a href="{{ route('movies.reviews.create', $movie) }}" class="reset-link">
+            <span>Add a review</span>
+        </a>
+    </div>
+
     <div>
         <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
         <ul>
