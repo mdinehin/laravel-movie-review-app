@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
                     ->goodReting()
                     ->for($movie)
                     ->create();
-        });
+            });
 
         Movie::factory(33)
             ->create()
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                     ->neutralReting()
                     ->for($movie)
                     ->create();
-        });
+            });
 
         Movie::factory(34)
             ->create()
@@ -50,6 +50,6 @@ class DatabaseSeeder extends Seeder
                     ->badReting()
                     ->for($movie)
                     ->create();
-        });
+            });
     }
 }

@@ -22,8 +22,7 @@ class ReviewFactory extends Factory
             'review' => fake()->paragraph,
             'rating' => fake()->numberBetween(1, 5),
             'created_at' => fake()->dateTimeBetween('-2 years'),
-            'updated_at' => fn (array $attributes) =>
-                fake()->dateTimeBetween($attributes['created_at'], 'now'),
+            'updated_at' => fn (array $attributes) => fake()->dateTimeBetween($attributes['created_at'], 'now'),
         ];
     }
 

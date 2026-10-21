@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Movie;
+use App\Models\Review;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 return [
@@ -132,9 +135,9 @@ return [
     */
 
     'serializable_classes' => [
-        Illuminate\Database\Eloquent\Collection::class,
-        App\Models\Movie::class,
-        App\Models\Review::class,
+        Collection::class,
+        Movie::class,
+        Review::class,
     ],
 
 ];
