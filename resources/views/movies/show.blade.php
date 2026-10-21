@@ -9,10 +9,16 @@
             </div>
             <div class="movie-rating flex items-center">
                 <div class="mr-2 text-sm font-medium text-slate-700">
+                    <span>Average rating</span>
+                </div>
+                <div class="mr-2 text-sm font-medium text-slate-700">
                     <span>{{ number_format($movie->reviews_avg_rating, 1) }}</span>
                 </div>
+                <div class="mr-2 text-sm font-medium text-slate-700">
+                    <x-star-rating :rating="$movie->reviews_avg_rating" />
+                </div>
                 <div class="movie-review-count text-sm text-gray-500">
-                    <span>{{ $movie->reviews_count }} {{ Str::plural('review', $movie->reviews_count) }}</span>
+                    <span>({{ $movie->reviews_count }} {{ Str::plural('review', $movie->reviews_count) }})</span>
                 </div>
             </div>
         </div>
@@ -26,7 +32,8 @@
                     <div>
                         <div class="mb-2 flex items-center justify-between">
                             <div class="font-semibold">
-                                <span>Rating {{ $review->rating }}</span>
+                                <span class="mr-1">Rating {{ $review->rating }}</span>
+                                <span><x-star-rating :rating="$review->rating" /></span>
                             </div>
                             <div class="movie-review-count">
                                 <span>{{ $review->created_at->format('M j, Y') }}</span>

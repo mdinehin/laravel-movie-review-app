@@ -44,7 +44,7 @@
         }
 
         .movie-review-count {
-            @apply text-xs text-slate-500;
+            @apply text-xs text-slate-500 flex flex-wrap;
         }
 
         .empty-movie-item {

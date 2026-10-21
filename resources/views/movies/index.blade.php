@@ -67,10 +67,11 @@
                         </div>
                         <div>
                             <div class="movie-rating">
-                                <span>{{ number_format($movie->reviews_avg_rating, 1) }}</span>
+                                <span class="mr-1">{{ number_format($movie->reviews_avg_rating, 1) }}</span>
+                                <span><x-star-rating :rating="$movie->reviews_avg_rating" /></span>
                             </div>
                             <div class="movie-review-count">
-                                <span>out of {{ $movie->reviews_count }} {{ Str::plural('review', $movie->reviews_count) }}</span>
+                                <span class="ml-auto">out of {{ $movie->reviews_count }} {{ Str::plural('review', $movie->reviews_count) }}</span>
                             </div>
                         </div>
                     </div>
