@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="mb-10 text-2xl">Add a review for {{ $movie->title }}</h1>
+    <h1 class="mb-8 text-2xl">Add a review for {{ $movie->title }}</h1>
 
     <form method="POST" action="{{ route('movies.reviews.store', $movie) }}">
         @csrf
@@ -11,15 +11,18 @@
         ></textarea>
 
         <label for="rating">Rating</label>
-        <select name="rating" id="rating" class="input mb-4" required>
+        <select name="rating" id="rating" class="input mb-8" required>
             <option value="">Select a rating</option>
             @for($i = 1; $i <= 5; $i++)
                 <option value="{{ $i }}">{{ $i }}</option>
             @endfor
         </select>
 
-        <button type="submit" class="btn">
-            <span>Add review</span>
-        </button>
+        <div class="flex items-center space-x-2">
+            <a href="{{ route('movies.show', $movie) }}" class="btn">Cancel</a>
+            <button type="submit" class="btn">
+                <span>Add review</span>
+            </button>
+        </div>
     </form>
 @endsection

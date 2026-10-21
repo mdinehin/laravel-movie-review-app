@@ -24,10 +24,18 @@
         </div>
     </div>
 
-    <div class="mb-4">
-        <a href="{{ route('movies.reviews.create', $movie) }}" class="reset-link">
-            <span>Add a review</span>
-        </a>
+    <div class="flex flex-wrap mb-4">
+        <div>
+            <a href="{{ route('movies.index') }}" class="action-link">
+                <span>Go back</span>
+            </a>
+        </div>
+        <div class="mx-2">|</div>
+        <div>
+            <a href="{{ route('movies.reviews.create', $movie) }}" class="action-link">
+                <span>Add a review</span>
+            </a>
+        </div>
     </div>
 
     <div>
@@ -52,6 +60,7 @@
                 <li class="mb-4">
                     <div class="empty-movie-item">
                         <p class="empty-text text-lg font-semibold">No reviews yet</p>
+                        <a href="{{ route('movies.reviews.create', $movie) }}" class="action-link">Add a review</a>
                     </div>
                 </li>
             @endforelse

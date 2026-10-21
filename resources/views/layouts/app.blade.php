@@ -55,7 +55,7 @@
             @apply font-medium text-slate-500;
         }
 
-        .reset-link {
+        .action-link {
             @apply text-slate-500 underline;
         }
     </style>
