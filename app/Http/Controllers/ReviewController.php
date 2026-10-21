@@ -6,9 +6,23 @@ use App\Models\Movie;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class ReviewController extends Controller
+class ReviewController extends Controller implements HasMiddleware
 {
+    /**
+     * Get the middleware that should be assigned to the controller.
+     *
+     * @return array<int, Middleware|string>
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('throttle:reviews', only: ['store']),
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */
