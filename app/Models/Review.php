@@ -12,6 +12,11 @@ class Review extends Model
     /** @use HasFactory<ReviewFactory> */
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
         'review',
         'rating',
