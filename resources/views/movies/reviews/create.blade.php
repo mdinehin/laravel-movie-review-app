@@ -19,10 +19,10 @@
         </select>
 
         <div class="flex items-center space-x-2">
-            <a href="{{ route('movies.show', $movie) }}" class="btn">Cancel</a>
             <button type="submit" class="btn">
                 <span>Add review</span>
             </button>
+            <a href="{{ route('movies.show', $movie) }}" class="btn">Cancel</a>
         </div>
     </form>
 @endsection
