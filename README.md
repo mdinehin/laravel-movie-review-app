@@ -33,8 +33,8 @@ The following software dependencies are required:
 
 1. Clone the repository `git clone https://github.com/mdinehin/laravel-movie-review-app.git`
 2. Install PHP dependencies with `composer install`
-3. Set up a local MySQL database named `laravel_movie_review_app`
-4. Copy the `.env.example` file to `.env` and fill in the database credentials
+3. Copy the `.env.example` file to `.env` and fill in the database credentials
+4. Generate the application key with `php artisan key:generate`
 5. Run database migrations with `php artisan migrate`
 6. Run database seeds with `php artisan db:seed`
 7. Start the local server by running `php artisan serve`
