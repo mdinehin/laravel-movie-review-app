@@ -13,6 +13,10 @@ A Laravel application for browsing movies and reviews, featuring movie filtering
 
 The project demonstrates modern Laravel development practices, including Eloquent relationships, query scopes, and Blade components.
 
+## Preview
+
+![Application demo walkthrough](https://github.com/user-attachments/assets/4278ea25-8a92-4748-ad0e-b32bedbe36d5)
+
 ## Features
 
 - Browse a collection of movies and add reviews.
