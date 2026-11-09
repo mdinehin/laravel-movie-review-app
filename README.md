@@ -1,4 +1,4 @@
-# Laravel Movie Review App
+# Laravel Movie Reviews
 
 ![Laravel Version](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=flat-square&logo=php&logoColor=white)
@@ -6,8 +6,8 @@
 ![MySQL Version](https://img.shields.io/badge/MySQL-9.x-4479A1?style=flat-square&logo=mysql&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-<a href="https://github.com/mdinehin/laravel-movie-review-app/actions/workflows/tests.yml"><img src="https://github.com/mdinehin/laravel-movie-review-app/workflows/Tests/badge.svg" alt="Tests"></a>
-<a href="https://github.com/mdinehin/laravel-movie-review-app/actions/workflows/coding-standards.yml"><img src="https://github.com/mdinehin/laravel-movie-review-app/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards"></a>
+<a href="https://github.com/mdinehin/laravel-movie-reviews/actions/workflows/tests.yml"><img src="https://github.com/mdinehin/laravel-movie-reviews/workflows/Tests/badge.svg" alt="Tests"></a>
+<a href="https://github.com/mdinehin/laravel-movie-reviews/actions/workflows/coding-standards.yml"><img src="https://github.com/mdinehin/laravel-movie-reviews/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards"></a>
 
 A Laravel application for browsing movies and reviews, featuring movie filtering, popularity rankings, rating-based sorting, and a responsive user interface built with Blade and Tailwind CSS.
 
@@ -35,7 +35,7 @@ The following software dependencies are required:
 
 ## Installation
 
-1. Clone the repository `git clone https://github.com/mdinehin/laravel-movie-review-app.git`
+1. Clone the repository `git clone https://github.com/mdinehin/laravel-movie-reviews.git`
 2. Install PHP dependencies with `composer install`
 3. Copy the `.env.example` file to `.env` and fill in the database credentials
 4. Generate the application key with `php artisan key:generate`
