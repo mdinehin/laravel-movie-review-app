@@ -40,28 +40,25 @@
 
     <div>
         <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
-        <ul>
+
+        <ul class="flex flex-col gap-4">
             @forelse ($movie->reviews as $review)
-                <li class="movie-item mb-4">
-                    <div>
-                        <div class="mb-2 flex items-center justify-between">
-                            <div class="font-semibold">
-                                <span class="mr-1">Rating {{ $review->rating }}</span>
-                                <span><x-star-rating :rating="$review->rating" /></span>
-                            </div>
-                            <div class="movie-review-count">
-                                <span>{{ $review->created_at->format('M j, Y') }}</span>
-                            </div>
+                <li class="movie-item">
+                    <div class="mb-2 flex items-center justify-between">
+                        <div class="font-semibold">
+                            <span class="mr-1">Rating {{ $review->rating }}</span>
+                            <span><x-star-rating :rating="$review->rating" /></span>
                         </div>
-                        <p class="text-gray-700">{{ $review->review }}</p>
+                        <div class="movie-review-count">
+                            <span>{{ $review->created_at->format('M j, Y') }}</span>
+                        </div>
                     </div>
+                    <p class="text-gray-700">{{ $review->review }}</p>
                 </li>
             @empty
-                <li class="mb-4">
-                    <div class="empty-movie-item">
-                        <p class="empty-text text-lg font-semibold">No reviews yet</p>
-                        <a href="{{ route('movies.reviews.create', $movie) }}" class="action-link">Add a review</a>
-                    </div>
+                <li class="empty-item">
+                    <p class="empty-text text-lg font-semibold">No reviews yet.</p>
+                    <a href="{{ route('movies.reviews.create', $movie) }}" class="action-link">Add a review</a>
                 </li>
             @endforelse
         </ul>
