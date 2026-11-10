@@ -36,12 +36,12 @@ The following software dependencies are required:
 ## Installation
 
 1. Clone the repository `git clone https://github.com/mdinehin/laravel-movie-reviews.git`
-2. Install PHP dependencies with `composer install`
+2. Install PHP dependencies `composer install`
 3. Copy the `.env.example` file to `.env` and fill in the database credentials
-4. Generate the application key with `php artisan key:generate`
-5. Run database migrations with `php artisan migrate`
-6. Run database seeds with `php artisan db:seed`
-7. Start the local server by running `php artisan serve`
+4. Generate the application key `php artisan key:generate`
+5. Run database migrations `php artisan migrate`
+6. Seed the database `php artisan db:seed`
+7. Start the local server `php artisan serve`
 
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser to access the application.
 
